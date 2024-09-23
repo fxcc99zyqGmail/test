@@ -7,14 +7,22 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.FileReader;
+import java.io.Reader;
+
 @RestController
 public class TestController {
 
     @Autowired
     private ResponseResult responseResult;
 
+    @GetMapping("/test")
+    public String test(){
+        return "test";
+    }
+
     @PostMapping("/getMock")
-    public ResponseResult test(){
+    public ResponseResult getMock(){
         String str = "《代码大全》这本书的前3章为我们提供了关于软件开发的深入见解和实用技巧。以下是对这3章内容的总结：\n" +
                 "\n" +
                 "第1章：构建可维护的软件\n" +
@@ -34,7 +42,7 @@ public class TestController {
     }
 
     @GetMapping("/getMock2")
-    public ResponseResult test2(){
+    public ResponseResult getMock2() throws Exception {
         String str = "《代码大全》这本书的前3章为我们提供了关于软件开发的深入见解和实用技巧。以下是对这3章内容的总结：\n" +
                 "\n" +
                 "第1章：构建可维护的软件\n" +
@@ -47,9 +55,11 @@ public class TestController {
                 "这一章节主要关注测试驱动开发（TDD）的概念。作者解释了TDD的基本原理，即首先编写一个失败的测试用例，然后编写代码以使测试用例通过，最后对代码进行重构以提高其质量。这种方法有助于确保软件的正确性和稳定性，同时也鼓励开发人员关注代码的质量。\n" +
                 "\n" +
                 "总之，《代码大全》的前3章为我们提供了一个全面的指南，帮助我们编写出高质量、可维护和可扩展的代码。通过遵循这些原则和实践，我们可以提高软件开发的效率，减少错误和缺陷，从而为用户提供更好的软件产品。";
-        responseResult.setRespCode(200);
-        responseResult.setRespMsg("success");
-        responseResult.setRespData(str);
+//        responseResult.setRespCode(200);
+//        responseResult.setRespMsg("success");
+//        responseResult.setRespData(str);
+//        return responseResult;
+        Reader r = new FileReader(str);
         return responseResult;
     }
 }
